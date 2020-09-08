@@ -23,14 +23,7 @@ const Opening = (props) => {
           <img src={batman} alt="batman" />
         </div>
       </div>
-      <h3 className="text-center">
-        Superhero Match using{" "}
-        <a href="https://www.superheroapi.com/">Superhero-API</a>
-      </h3>
-      <h6 className="text-center">
-        Both your character and the opponent character are generated randomly
-      </h6>
-      <div className="text-center mt-3">
+      <div className="text-center my-3">
         <Button
           type="button"
           className="btn btn-danger btn-lg"
@@ -40,6 +33,13 @@ const Opening = (props) => {
           Start
         </Button>
       </div>
+      <h3 className="text-center">
+        Superhero Match using{" "}
+        <a href="https://www.superheroapi.com/">Superhero-API</a>
+      </h3>
+      <h6 className="text-center">
+        Both your character and the opponent character are generated randomly
+      </h6>
     </div>
   );
 };

@@ -1,23 +1,29 @@
 import React from "react";
 
+import man from "../assets/man.png";
+
 const HeroLawan = (props) => {
-  const { nama, image, stats } = props;
+  const { heroLawan, showHeroLawan } = props;
 
   return (
-    <div className="hero-lawan">
-      <img src={image} alt={nama} style={{ maxWidth: 150 }} />
-      <h4>{nama}</h4>
-      {stats ? (
-        <ul>
-          <li>combat: {stats.combat}</li>
-          <li>durability: {stats.durability}</li>
-          <li>intelligence: {stats.intelligence}</li>
-          <li>power: {stats.power}</li>
-          <li>speed: {stats.speed}</li>
-          <li>strength: {stats.strength}</li>
-        </ul>
+    <div className="hero-lawan justify-content-end">
+      {showHeroLawan ? (
+        <figure>
+          <img src={heroLawan.image} alt={heroLawan.nama} />
+          <h4>{heroLawan.nama}</h4>
+        </figure>
       ) : (
-        ""
+        <div
+          className="gray-man"
+          style={{
+            backgroundColor: "gray",
+            width: 380,
+            height: 480,
+            borderRadius: 15,
+          }}
+        >
+          <img src={man} alt="man" />
+        </div>
       )}
     </div>
   );

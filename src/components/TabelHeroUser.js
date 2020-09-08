@@ -1,14 +1,21 @@
 import React from "react";
 
-import Button from "./Button";
-
 const TabelHeroUser = (props) => {
-  const { heroUser1, heroUser2, heroUser3, heroUser4 } = props;
+  const {
+    heroUser1,
+    heroUser2,
+    heroUser3,
+    heroUser4,
+    handleClick,
+    showTableHeroUser,
+  } = props;
 
   console.log("heroUser1-Tabel:", heroUser1);
 
   return (
-    <table className="table table-bordered">
+    <table
+      className={`table table-borderless text-center ${showTableHeroUser}`}
+    >
       {heroUser1 ? (
         <tbody>
           <tr>
@@ -17,7 +24,7 @@ const TabelHeroUser = (props) => {
                 src={heroUser1.image}
                 alt={heroUser1.name}
                 style={{ maxWidth: 150, height: "100%" }}
-                onClick={() => console.log("clicked")}
+                onClick={() => handleClick(heroUser1)}
               />
             </td>
             <td>
@@ -25,6 +32,7 @@ const TabelHeroUser = (props) => {
                 src={heroUser2.image}
                 alt={heroUser2.name}
                 style={{ maxWidth: 150, height: "100%" }}
+                onClick={() => handleClick(heroUser2)}
               />
             </td>
           </tr>
@@ -34,6 +42,7 @@ const TabelHeroUser = (props) => {
                 src={heroUser3.image}
                 alt={heroUser3.name}
                 style={{ maxWidth: 150, height: "100%" }}
+                onClick={() => handleClick(heroUser3)}
               />
             </td>
             <td>
@@ -41,6 +50,7 @@ const TabelHeroUser = (props) => {
                 src={heroUser4.image}
                 alt={heroUser4.name}
                 style={{ maxWidth: 150, height: "100%" }}
+                onClick={() => handleClick(heroUser4)}
               />
             </td>
           </tr>
