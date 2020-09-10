@@ -4,16 +4,12 @@ const HeroUser = (props) => {
   const { showHeroUser, selectedHero } = props;
 
   return (
-    <div className={`hero-lawan text-center ${showHeroUser}`}>
+    <div className={`hero-user text-center ${showHeroUser}`}>
       {selectedHero ? (
-        <>
-          <img
-            src={selectedHero.image}
-            alt={selectedHero.nama}
-            style={{ maxWidth: 400, height: "100%" }}
-          />
+        <figure>
+          <img src={selectedHero.image} alt={selectedHero.nama} />
           <h4>{selectedHero.nama}</h4>
-        </>
+        </figure>
       ) : (
         <p>No Hero Selected!</p>
       )}

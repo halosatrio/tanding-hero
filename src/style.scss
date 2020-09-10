@@ -2,3 +2,48 @@
 
 $serif: "Lora", serif;
 $sans: "Raleway", sans-serif;
+
+.opening {
+  .opening-kiri {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+
+.versus {
+  .tabel-hero {
+    img {
+      max-width: 100%;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .hero-user {
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .hero-lawan {
+    .gray-man {
+      background-color: gray;
+      max-width: 100%;
+      border-radius: 15px;
+
+      img {
+        max-width: 80%;
+        padding: 35% 0;
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

@@ -11,15 +11,15 @@ const Opening = (props) => {
   const { handleStart } = props;
 
   return (
-    <div className={`opening container ${className}`}>
-      <div className="row justify-content-between my-4 align-items-center">
-        <div className="col-md-3 mb-4">
+    <div className={`opening ${className}`}>
+      <div className="row justify-content-around my-4 align-items-center">
+        <div className="col-5 col-lg-4 opening-kiri">
           <img src={ironman} alt="batman" />
         </div>
-        <div className="col-md-4 mb-4 mx-4">
+        <div className="col-2">
           <img src={swords} alt="batman" />
         </div>
-        <div className="col-md-3 mb-4">
+        <div className="col-5 col-lg-4">
           <img src={batman} alt="batman" />
         </div>
       </div>

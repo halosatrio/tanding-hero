@@ -28,9 +28,9 @@ const Versus = (props) => {
   const showHeroUser = showTable ? "d-none" : "d-block";
 
   return (
-    <div className={`versus container ${className}`}>
-      <div className="row justify-content-between my-4 align-items-center">
-        <div className="col-md-5 mb-4">
+    <div className={`versus ${className}`}>
+      <div className="row justify-content-center my-4 align-items-center">
+        <div className="col-5 col-lg-4">
           <TabelHeroUser
             heroUser1={heroUser1}
             heroUser2={heroUser2}
@@ -41,10 +41,10 @@ const Versus = (props) => {
           />
           <HeroUser showHeroUser={showHeroUser} selectedHero={selectedHero} />
         </div>
-        <div className="col-md-2 mb-4">
+        <div className="col-2">
           <img src={swords} alt="batman" />
         </div>
-        <div className="col-md-5 mb-4">
+        <div className="col-5 col-lg-4">
           <HeroLawan heroLawan={heroLawan} showHeroLawan={showHeroLawan} />
         </div>
       </div>

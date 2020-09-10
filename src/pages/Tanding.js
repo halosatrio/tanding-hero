@@ -115,7 +115,7 @@ export class Tanding extends Component {
     console.log("heroUser-Tanding:", heroUser);
 
     return (
-      <div className="container tanding px-5">
+      <div className="container tanding">
         <TitleText />
         <Opening className={showOpening} handleStart={this.handleStart} />
         <Versus
