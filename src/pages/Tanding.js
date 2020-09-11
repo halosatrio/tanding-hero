@@ -1,101 +1,64 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import TitleText from "../components/TitleText";
 import Opening from "../components/Opening";
 import Versus from "../components/Versus";
 import Footer from "../components/Footer";
 
-import fakeHeroAPI from "../assets/fakeHeroAPI.json";
+import { getHeroLawan, getHeroUser } from "../services/getHero";
+import { randomNumber } from "../utils/generateRandom";
 
 export class Tanding extends Component {
   state = {
     heroLawan: [],
+    heroUser1: [],
+    heroUser2: [],
+    heroUser3: [],
+    heroUser4: [],
     opening: true,
   };
 
-  componentDidMount() {
-    const idLawan = this.randomNumber(1, 46);
-
+  async componentDidMount() {
+    const idLawan = randomNumber(1, 731);
     const idUser = [
-      this.randomNumber(1, 46),
-      this.randomNumber(1, 46),
-      this.randomNumber(1, 46),
-      this.randomNumber(1, 46),
+      randomNumber(1, 731),
+      randomNumber(1, 731),
+      randomNumber(1, 731),
+      randomNumber(1, 731),
     ];
 
-    this.getHeroLawan(idLawan);
+    const data = await getHeroLawan(idLawan);
+    this.setState({ heroLawan: data });
 
-    idUser.forEach((item, index) => {
-      const hasil = "heroUser" + (index + 1);
-      const hero = this.getHeroUser(item);
-      this.setState({ [hasil]: hero });
-    });
+    const heroUser1 = await getHeroUser(idUser[0]);
+    const heroUser2 = await getHeroUser(idUser[1]);
+    const heroUser3 = await getHeroUser(idUser[2]);
+    const heroUser4 = await getHeroUser(idUser[3]);
+    this.setState({ heroUser1, heroUser2, heroUser3, heroUser4 });
   }
-
-  getHeroLawan = (id) => {
-    const dbHero = fakeHeroAPI;
-
-    const result = dbHero.find((h) => h.id === id);
-    this.setState({
-      heroLawan: {
-        nama: result.name,
-        image: result.images.md,
-        intelligence: result.powerstats.intelligence,
-        strength: result.powerstats.strength,
-        speed: result.powerstats.speed,
-        durability: result.powerstats.durability,
-        power: result.powerstats.power,
-        combat: result.powerstats.combat,
-      },
-    });
-  };
-
-  getHeroUser = (id) => {
-    const dbHero = fakeHeroAPI;
-
-    const result = dbHero.find((h) => h.id === id);
-    const heroUser = {
-      nama: result.name,
-      image: result.images.md,
-      intelligence: result.powerstats.intelligence,
-      strength: result.powerstats.strength,
-      speed: result.powerstats.speed,
-      durability: result.powerstats.durability,
-      power: result.powerstats.power,
-      combat: result.powerstats.combat,
-    };
-
-    return heroUser;
-  };
-
-  randomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
 
   handleStart = () => {
     this.setState({ opening: !this.state.opening });
   };
 
-  handleReplay = () => {
-    this.setState({ heroLawan: [], dataUser: [] });
-
-    const idLawan = [this.randomNumber(1, 50)];
-
-    const idUser = [
-      this.randomNumber(1, 100),
-      this.randomNumber(1, 100),
-      this.randomNumber(1, 100),
-      this.randomNumber(1, 100),
-    ];
-
-    this.getHeroLawan([idLawan]);
-
-    idUser.forEach((item, index) => {
-      const hasil = "heroUser" + (index + 1);
-      const hero = this.getHeroUser(item);
-      this.setState({ [hasil]: hero });
+  handleResetHero = () => {
+    this.setState({
+      heroLawan: [],
+      heroUser1: [],
+      heroUser2: [],
+      heroUser3: [],
+      heroUser4: [],
     });
+  };
+
+  handleHeroRematch = (
+    heroLawan,
+    heroUser1,
+    heroUser2,
+    heroUser3,
+    heroUser4
+  ) => {
+    this.setState({ heroLawan, heroUser1, heroUser2, heroUser3, heroUser4 });
   };
 
   render() {
@@ -112,7 +75,8 @@ export class Tanding extends Component {
     const showOpening = opening ? "d-block" : "d-none";
     const showVersus = opening ? "d-none" : "d-block";
 
-    console.log("heroUser-Tanding:", heroUser);
+    console.log("heroLawan-Tanding:", heroLawan);
+    console.log("heroUser1-Tanding:", heroUser1);
 
     return (
       <div className="container tanding">
@@ -122,6 +86,8 @@ export class Tanding extends Component {
           className={showVersus}
           heroLawan={heroLawan}
           heroUser={heroUser}
+          handleResetHero={this.handleResetHero}
+          handleHeroRematch={this.handleHeroRematch}
         />
         <Footer />
       </div>

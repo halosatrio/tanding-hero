@@ -7,6 +7,7 @@ import { LoveIcon } from "../assets/icons";
 const Footer = () => {
   return (
     <footer className="bg-white">
+      <hr />
       <div className="container my-4">
         <div className="row justify-content-center">
           <div className="col text-center copyrights">

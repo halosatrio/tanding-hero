@@ -11,14 +11,24 @@ export function calculatePowerLevel(hero) {
     durability * 20 +
     power * 100 +
     combat * 10;
-  // {hero ? (return powerLevel) : return null}
-  return powerLevel;
+
+  if (isNaN(powerLevel) || powerLevel === null) {
+    return 0;
+  } else {
+    return powerLevel;
+  }
 }
 
 export function bandingUserLawan(heroUser, heroLawan) {
+  console.log("bandingHero-User", heroUser);
+  console.log("bandingHero-Lawan", heroLawan);
   if (heroUser > heroLawan) {
-    return "You Win";
-  } else {
-    return "You Lose";
+    return "You Win!";
+  }
+  if (heroUser < heroLawan) {
+    return "You Lose!";
+  }
+  if (heroUser === heroLawan) {
+    return "Draw!";
   }
 }

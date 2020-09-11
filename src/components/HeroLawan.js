@@ -9,8 +9,8 @@ const HeroLawan = (props) => {
     <div className="hero-lawan text-center">
       {showHeroLawan ? (
         <figure>
-          <img src={heroLawan.image} alt={heroLawan.nama} />
-          <h4>{heroLawan.nama}</h4>
+          <img src={heroLawan.image} alt={heroLawan.name} />
+          <h4>{heroLawan.name}</h4>
         </figure>
       ) : (
         <div className="gray-man">

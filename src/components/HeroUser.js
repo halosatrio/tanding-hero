@@ -7,8 +7,8 @@ const HeroUser = (props) => {
     <div className={`hero-user text-center ${showHeroUser}`}>
       {selectedHero ? (
         <figure>
-          <img src={selectedHero.image} alt={selectedHero.nama} />
-          <h4>{selectedHero.nama}</h4>
+          <img src={selectedHero.image} alt={selectedHero.name} />
+          <h4>{selectedHero.name}</h4>
         </figure>
       ) : (
         <p>No Hero Selected!</p>

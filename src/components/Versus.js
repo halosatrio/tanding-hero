@@ -11,32 +11,34 @@ import HeroUser from "./HeroUser";
 import HeroLawan from "./HeroLawan";
 
 import swords from "../assets/swords-icon1.svg";
+import Button from "./Button";
+import { getHeroLawan, getHeroUser } from "../services/getHero";
+import { randomNumber } from "../utils/generateRandom";
 
 Modal.setAppElement("#root");
 const Versus = (props) => {
   const className = [props.className];
-  const { heroLawan, heroUser } = props;
+  const { heroLawan, heroUser, handleResetHero, handleHeroRematch } = props;
+
+  const [heroUser1, heroUser2, heroUser3, heroUser4] = heroUser;
 
   const [showTable, setShowTable] = useState(true);
   const [selectedHero, setSelectedHero] = useState(null);
-  const [showHeroLawan, setSshowHeroLawan] = useState(false);
+  const [showHeroLawan, setShowHeroLawan] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [winLose, setWinLose] = useState("")
-
-  const [heroUser1, heroUser2, heroUser3, heroUser4] = heroUser;
 
   const powerLevelUser = calculatePowerLevel(selectedHero);
   const powerLevelLawan = calculatePowerLevel(heroLawan);
 
   const hasilTanding = bandingUserLawan(powerLevelUser, powerLevelLawan);
 
-  console.log("heroUser1 - Versus:", heroUser1);
+  console.log("heroLawan - Versus:", heroLawan);
 
   const handleSelectHeroUser = (hero) => {
     setShowTable(!showTable);
-    setSshowHeroLawan(!showHeroLawan);
+    setShowHeroLawan(!showHeroLawan);
     setSelectedHero(hero);
-    setTimeout(handleOpenModal, 500);
+    setTimeout(handleOpenModal, 1000);
   };
 
   const handleOpenModal = () => {
@@ -47,20 +49,26 @@ const Versus = (props) => {
     setModalIsOpen(false);
   };
 
-  const modalStyles = {
-    overlay: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
-    content: {
-      padding: "40px 80px",
-      border: "1px solid #ccc",
-      background: "#fff",
-      borderRadius: "15px",
-      textAlign: "center",
-    },
+  const handleRematch = async () => {
+    setShowTable(true);
+    setShowHeroLawan(false);
+    setSelectedHero(null);
+
+    handleResetHero();
+    const idLawan = randomNumber(1, 731);
+    const idUser = [
+      randomNumber(1, 731),
+      randomNumber(1, 731),
+      randomNumber(1, 731),
+      randomNumber(1, 731),
+    ];
+    const heroLawan = await getHeroLawan(idLawan);
+
+    const heroUser1 = await getHeroUser(idUser[0]);
+    const heroUser2 = await getHeroUser(idUser[1]);
+    const heroUser3 = await getHeroUser(idUser[2]);
+    const heroUser4 = await getHeroUser(idUser[3]);
+    handleHeroRematch(heroLawan, heroUser1, heroUser2, heroUser3, heroUser4);
   };
 
   const showTableHeroUser = showTable ? "d-block" : "d-none";
@@ -71,8 +79,8 @@ const Versus = (props) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleCloseModal}
-        style={modalStyles}
-        className
+        overlayClassName="ReactModal__Overlay"
+        className="ReactModal__Content"
       >
         <h2 className="mb-3">{hasilTanding}</h2>
         <button className="btn btn-secondary btn-sm" onClick={handleCloseModal}>
@@ -97,6 +105,16 @@ const Versus = (props) => {
         <div className="col-5 col-lg-4">
           <HeroLawan heroLawan={heroLawan} showHeroLawan={showHeroLawan} />
         </div>
+      </div>
+      <div className="text-center my-3">
+        <Button
+          type="button"
+          className="btn btn-danger"
+          style={{ paddingLeft: 50, paddingRight: 50 }}
+          onClick={handleRematch}
+        >
+          REMATCH
+        </Button>
       </div>
     </div>
   );

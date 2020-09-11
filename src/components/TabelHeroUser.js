@@ -11,8 +11,6 @@ const TabelHeroUser = (props) => {
     showTableHeroUser,
   } = props;
 
-  // const heroItems = [heroUser1, heroUser2, heroUser3, heroUser4];
-
   console.log("heroUser1-Tabel:", heroUser1);
 
   return (
@@ -23,34 +21,34 @@ const TabelHeroUser = (props) => {
           <div className="col text-center px-1 px-sm-2">
             <img
               src={heroUser1.image}
-              alt={heroUser1.nama}
+              alt={heroUser1.name}
               onClick={() => handleClick(heroUser1)}
             />
-            <p>{heroUser1.nama}</p>
+            <p>{heroUser1.name}</p>
           </div>
           <div className="col text-center px-1 px-sm-2">
             <img
               src={heroUser2.image}
-              alt={heroUser2.nama}
+              alt={heroUser2.name}
               onClick={() => handleClick(heroUser2)}
             />
-            <p>{heroUser2.nama}</p>
+            <p>{heroUser2.name}</p>
           </div>
           <div className="col text-center px-1 px-sm-2">
             <img
               src={heroUser3.image}
-              alt={heroUser3.nama}
+              alt={heroUser3.name}
               onClick={() => handleClick(heroUser3)}
             />
-            <p>{heroUser3.nama}</p>
+            <p>{heroUser3.name}</p>
           </div>
           <div className="col text-center px-1 px-sm-2">
             <img
               src={heroUser4.image}
-              alt={heroUser4.nama}
+              alt={heroUser4.name}
               onClick={() => handleClick(heroUser4)}
             />
-            <p>{heroUser4.nama}</p>
+            <p>{heroUser4.name}</p>
           </div>
         </div>
       ) : null}
@@ -59,20 +57,3 @@ const TabelHeroUser = (props) => {
 };
 
 export default TabelHeroUser;
-
-{
-  /* <div className={`row row-cols-2 ${showTableHeroUser}`}>
-      {heroUser1
-        ? heroItems.map((item, index) => (
-            <div key={index} className="col">
-              <img
-                src={item.image}
-                alt={item.name}
-                style={{ maxWidth: 150, height: "100%" }}
-                onClick={() => handleClick(item)}
-              />
-            </div>
-          ))
-        : null}
-    </div> */
-}
