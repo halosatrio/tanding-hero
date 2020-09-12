@@ -15,6 +15,7 @@ export class Tanding extends Component {
     heroUser2: [],
     heroUser3: [],
     heroUser4: [],
+    loading: true,
     opening: true,
   };
 
@@ -27,14 +28,19 @@ export class Tanding extends Component {
       randomNumber(1, 731),
     ];
 
-    const data = await getHeroLawan(idLawan);
-    this.setState({ heroLawan: data });
-
+    const heroLawan = await getHeroLawan(idLawan);
     const heroUser1 = await getHeroUser(idUser[0]);
     const heroUser2 = await getHeroUser(idUser[1]);
     const heroUser3 = await getHeroUser(idUser[2]);
     const heroUser4 = await getHeroUser(idUser[3]);
-    this.setState({ heroUser1, heroUser2, heroUser3, heroUser4 });
+    this.setState({
+      heroLawan,
+      heroUser1,
+      heroUser2,
+      heroUser3,
+      heroUser4,
+      loading: false,
+    });
   }
 
   handleStart = () => {
@@ -43,6 +49,7 @@ export class Tanding extends Component {
 
   handleResetHero = () => {
     this.setState({
+      loading: true,
       heroLawan: [],
       heroUser1: [],
       heroUser2: [],
@@ -58,12 +65,20 @@ export class Tanding extends Component {
     heroUser3,
     heroUser4
   ) => {
-    this.setState({ heroLawan, heroUser1, heroUser2, heroUser3, heroUser4 });
+    this.setState({
+      heroLawan,
+      heroUser1,
+      heroUser2,
+      heroUser3,
+      heroUser4,
+      loading: false,
+    });
   };
 
   render() {
     const {
       opening,
+      loading,
       heroLawan,
       heroUser1,
       heroUser2,
@@ -88,6 +103,7 @@ export class Tanding extends Component {
           heroUser={heroUser}
           handleResetHero={this.handleResetHero}
           handleHeroRematch={this.handleHeroRematch}
+          loading={loading}
         />
         <Footer />
       </div>

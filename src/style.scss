@@ -22,15 +22,48 @@ $sans: "Raleway", sans-serif;
     p {
       font-size: 12px;
     }
+
+    .loading-hero {
+      background-color: gray;
+      max-width: 100%;
+      border-radius: 15px;
+
+      h2 {
+        padding: 65% 0;
+        text-align: center;
+        font-size: 150%;
+        color: whitesmoke;
+      }
+    }
   }
 
   .hero-user {
     img {
       max-width: 100%;
     }
+
+    .stats-user {
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 10px 0;
+
+      ul {
+        margin-bottom: 0;
+        padding-left: 30px;
+        li {
+          font-size: 90%;
+        }
+      }
+    }
   }
 
   .hero-lawan {
+    figure {
+      img {
+        max-width: 100%;
+      }
+    }
+
     .gray-man {
       background-color: gray;
       max-width: 100%;
@@ -41,10 +74,26 @@ $sans: "Raleway", sans-serif;
         padding: 35% 0;
       }
     }
+
+    .stats-lawan {
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 10px 0;
+
+      ul {
+        margin-bottom: 0;
+        padding-left: 30px;
+        li {
+          font-size: 90%;
+        }
+      }
+    }
   }
 
-  img {
-    max-width: 100%;
+  .sword {
+    img {
+      max-width: 100%;
+    }
   }
 }
 

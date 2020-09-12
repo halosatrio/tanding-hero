@@ -18,7 +18,13 @@ import { randomNumber } from "../utils/generateRandom";
 Modal.setAppElement("#root");
 const Versus = (props) => {
   const className = [props.className];
-  const { heroLawan, heroUser, handleResetHero, handleHeroRematch } = props;
+  const {
+    heroLawan,
+    heroUser,
+    handleResetHero,
+    handleHeroRematch,
+    loading,
+  } = props;
 
   const [heroUser1, heroUser2, heroUser3, heroUser4] = heroUser;
 
@@ -96,24 +102,33 @@ const Versus = (props) => {
             heroUser4={heroUser4}
             handleClick={handleSelectHeroUser}
             showTableHeroUser={showTableHeroUser}
+            loading={loading}
           />
-          <HeroUser showHeroUser={showHeroUser} selectedHero={selectedHero} />
+          <HeroUser
+            showHeroUser={showHeroUser}
+            selectedHero={selectedHero}
+            powerLevelUser={powerLevelUser}
+          />
         </div>
-        <div className="col-2">
+        <div className="col-2 sword">
           <img src={swords} alt="batman" />
         </div>
         <div className="col-5 col-lg-4">
-          <HeroLawan heroLawan={heroLawan} showHeroLawan={showHeroLawan} />
+          <HeroLawan
+            heroLawan={heroLawan}
+            showHeroLawan={showHeroLawan}
+            powerLevelLawan={powerLevelLawan}
+          />
         </div>
       </div>
-      <div className="text-center my-3">
+      <div className="text-center mt-2 mb-4">
         <Button
           type="button"
-          className="btn btn-danger"
+          className="btn btn-danger btn-lg"
           style={{ paddingLeft: 50, paddingRight: 50 }}
           onClick={handleRematch}
         >
-          REMATCH
+          R E M A T C H
         </Button>
       </div>
     </div>
