@@ -90,9 +90,6 @@ export class Tanding extends Component {
     const showOpening = opening ? "d-block" : "d-none";
     const showVersus = opening ? "d-none" : "d-block";
 
-    console.log("heroLawan-Tanding:", heroLawan);
-    console.log("heroUser1-Tanding:", heroUser1);
-
     return (
       <div className="container tanding">
         <TitleText />
@@ -105,7 +102,7 @@ export class Tanding extends Component {
           handleHeroRematch={this.handleHeroRematch}
           loading={loading}
         />
-        <Footer />
+        <Footer isTanding />
       </div>
     );
   }

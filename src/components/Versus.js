@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
+import TabelHeroUser from "./TabelHeroUser";
+import HeroUser from "./HeroUser";
+import HeroLawan from "./HeroLawan";
+import Button from "./Button";
+
+import swords from "../assets/swords.png";
+import { getHeroLawan, getHeroUser } from "../services/getHero";
+import { randomNumber } from "../utils/generateRandom";
 import {
   calculatePowerLevel,
   bandingUserLawan,
 } from "../utils/calculatePowerLevel";
-
-import TabelHeroUser from "./TabelHeroUser";
-import HeroUser from "./HeroUser";
-import HeroLawan from "./HeroLawan";
-
-import swords from "../assets/swords-icon1.svg";
-import Button from "./Button";
-import { getHeroLawan, getHeroUser } from "../services/getHero";
-import { randomNumber } from "../utils/generateRandom";
 
 Modal.setAppElement("#root");
 const Versus = (props) => {
@@ -37,8 +36,6 @@ const Versus = (props) => {
   const powerLevelLawan = calculatePowerLevel(heroLawan);
 
   const hasilTanding = bandingUserLawan(powerLevelUser, powerLevelLawan);
-
-  console.log("heroLawan - Versus:", heroLawan);
 
   const handleSelectHeroUser = (hero) => {
     setShowTable(!showTable);

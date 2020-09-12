@@ -20,8 +20,6 @@ export function calculatePowerLevel(hero) {
 }
 
 export function bandingUserLawan(heroUser, heroLawan) {
-  console.log("bandingHero-User", heroUser);
-  console.log("bandingHero-Lawan", heroLawan);
   if (heroUser > heroLawan) {
     return "You Win!";
   }

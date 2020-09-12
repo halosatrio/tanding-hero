@@ -5,7 +5,7 @@ export async function getHeroLawan(id) {
   try {
     const response = await axios(
       proxyurl +
-        "https://superheroapi.com/api/3976831975725162/" +
+        "https://superheroapi.com/api/1558144997677325/" +
         id.toString(),
       {
         method: "GET",
@@ -32,7 +32,7 @@ export async function getHeroUser(id) {
   try {
     const response = await axios(
       proxyurl +
-        "https://superheroapi.com/api/3976831975725162/" +
+        "https://superheroapi.com/api/1558144997677325/" +
         id.toString(),
       {
         method: "GET",

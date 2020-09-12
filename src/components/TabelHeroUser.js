@@ -13,8 +13,6 @@ const TabelHeroUser = (props) => {
     loading,
   } = props;
 
-  console.log("heroUser1-Tabel:", heroUser1);
-
   return (
     <div className={`tabel-hero ${showTableHeroUser}`}>
       <h5 className="text-center mb-2">Select Your Character</h5>

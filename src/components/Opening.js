@@ -2,9 +2,9 @@ import React from "react";
 
 import Button from "../components/Button";
 
-import batman from "../assets/batman.svg";
-import ironman from "../assets/ironman.svg";
-import swords from "../assets/swords-icon1.svg";
+import batman from "../assets/batman.png";
+import ironman from "../assets/ironman.png";
+import swords from "../assets/swords.png";
 
 const Opening = (props) => {
   const className = [props.className];
@@ -30,7 +30,7 @@ const Opening = (props) => {
           style={{ paddingLeft: 50, paddingRight: 50 }}
           onClick={handleStart}
         >
-          Start
+          S T A R T
         </Button>
       </div>
       <h3 className="text-center">
