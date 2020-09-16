@@ -65,12 +65,20 @@ const Versus = (props) => {
       randomNumber(1, 731),
       randomNumber(1, 731),
     ];
-    const heroLawan = await getHeroLawan(idLawan);
 
-    const heroUser1 = await getHeroUser(idUser[0]);
-    const heroUser2 = await getHeroUser(idUser[1]);
-    const heroUser3 = await getHeroUser(idUser[2]);
-    const heroUser4 = await getHeroUser(idUser[3]);
+    const [
+      heroLawan,
+      heroUser1,
+      heroUser2,
+      heroUser3,
+      heroUser4,
+    ] = await Promise.all([
+      getHeroLawan(idLawan),
+      getHeroUser(idUser[0]),
+      getHeroUser(idUser[1]),
+      getHeroUser(idUser[2]),
+      getHeroUser(idUser[3]),
+    ]);
     handleHeroRematch(heroLawan, heroUser1, heroUser2, heroUser3, heroUser4);
   };
 

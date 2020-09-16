@@ -18,7 +18,7 @@ const TabelHeroUser = (props) => {
       <h5 className="text-center mb-2">Select Your Character</h5>
       {loading ? (
         <figure className="loading-hero">
-          <h2>Loading . . .</h2>
+          <h2>Loading...</h2>
         </figure>
       ) : (
         <div className="row row-cols-2 px-2 px-sm-2 px-md-3">
