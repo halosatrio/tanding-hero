@@ -3,14 +3,15 @@ export function calculatePowerLevel(hero) {
     return null;
   }
 
-  const { intelligence, strength, speed, durability, power, combat } = hero;
+  const intelligence = hero?.intelligence * 50;
+  const strength = hero?.strength * 30;
+  const speed = hero?.speed * 30;
+  const durability = hero?.durability * 20;
+  const power = hero?.power * 100;
+  const combat = hero?.combat * 10;
+
   const powerLevel =
-    intelligence * 50 +
-    strength * 30 +
-    speed * 30 +
-    durability * 20 +
-    power * 100 +
-    combat * 10;
+    intelligence + strength + speed + durability + power + combat;
 
   if (isNaN(powerLevel) || powerLevel === null) {
     return 0;

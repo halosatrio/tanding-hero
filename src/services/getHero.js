@@ -1,12 +1,12 @@
 import axios from "axios";
 
+const key = process.env.REACT_APP_API_KEY;
+
 export async function getHeroLawan(id) {
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   try {
     const response = await axios(
-      proxyurl +
-        "https://superheroapi.com/api/1558144997677325/" +
-        id.toString(),
+      `${proxyurl}https://superheroapi.com/api/${key}/${id}`,
       {
         method: "GET",
         mode: "cors",
@@ -31,9 +31,7 @@ export async function getHeroUser(id) {
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   try {
     const response = await axios(
-      proxyurl +
-        "https://superheroapi.com/api/1558144997677325/" +
-        id.toString(),
+      `${proxyurl}https://superheroapi.com/api/${key}/${id}`,
       {
         method: "GET",
         mode: "cors",
