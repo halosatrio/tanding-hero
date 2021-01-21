@@ -1,120 +1,127 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions1 from "../store/get-hero1/actions";
+import * as actions2 from "../store/get-lawan/actions";
 
+// Components
 import TitleText from "../components/TitleText";
-import Opening from "../components/Opening";
-import Versus from "../components/Versus";
-import Footer from "../components/Footer";
+import TabelHeroUser from "../components/TabelHeroUser";
+import HeroUser from "../components/HeroUser";
+import HeroLawan from "../components/HeroLawan";
+import Button from "../components/Button";
 
-import { getHeroLawan, getHeroUser } from "../services/getHero";
-import { randomNumber } from "../utils/generateRandom";
+import swords from "../assets/swords.png";
+import {
+  calculatePowerLevel,
+  bandingUserLawan,
+} from "../utils/calculatePowerLevel";
 
-export class Tanding extends Component {
-  state = {
-    heroLawan: [],
-    heroUser1: [],
-    heroUser2: [],
-    heroUser3: [],
-    heroUser4: [],
-    loading: true,
-    opening: true,
+Modal.setAppElement("#root");
+
+const Tanding = () => {
+  // States
+  const [heroUser1, setHeroUser1] = useState([]);
+  const [heroLawan, setHeroLawan] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [showTable, setShowTable] = useState(true);
+  const [selectedHero, setSelectedHero] = useState(null);
+  const [showHeroLawan, setShowHeroLawan] = useState(false);
+
+  // Global Variables
+  const dispatch = useDispatch();
+  const { data: hero1, isLoading } = useSelector((state) => state.GetHero1);
+  const { data: lawan } = useSelector((state) => state.GetLawan);
+
+  // Hooks
+  useEffect(() => {
+    dispatch(actions1.fetchData());
+  });
+  useEffect(() => {
+    dispatch(actions2.fetchData());
+  });
+
+  useEffect(() => {
+    setHeroUser1(hero1);
+  }, [hero1]);
+  useEffect(() => {
+    setHeroLawan(lawan);
+  }, [lawan]);
+
+  // handler
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
   };
 
-  async componentDidMount() {
-    const idLawan = randomNumber(1, 731);
-    const idUser = [
-      randomNumber(1, 731),
-      randomNumber(1, 731),
-      randomNumber(1, 731),
-      randomNumber(1, 731),
-    ];
-
-    const [
-      heroLawan,
-      heroUser1,
-      heroUser2,
-      heroUser3,
-      heroUser4,
-    ] = await Promise.all([
-      getHeroLawan(idLawan),
-      getHeroUser(idUser[0]),
-      getHeroUser(idUser[1]),
-      getHeroUser(idUser[2]),
-      getHeroUser(idUser[3]),
-    ]);
-
-    this.setState({
-      heroLawan,
-      heroUser1,
-      heroUser2,
-      heroUser3,
-      heroUser4,
-      loading: false,
-    });
-  }
-
-  handleStart = () => {
-    this.setState({ opening: !this.state.opening });
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
   };
 
-  handleResetHero = () => {
-    this.setState({
-      loading: true,
-      heroLawan: [],
-      heroUser1: [],
-      heroUser2: [],
-      heroUser3: [],
-      heroUser4: [],
-    });
+  const handleSelectHeroUser = (hero) => {
+    setShowTable(!showTable);
+    setShowHeroLawan(!showHeroLawan);
+    setSelectedHero(hero);
+    setTimeout(handleOpenModal, 1000);
   };
 
-  handleHeroRematch = (
-    heroLawan,
-    heroUser1,
-    heroUser2,
-    heroUser3,
-    heroUser4
-  ) => {
-    this.setState({
-      heroLawan,
-      heroUser1,
-      heroUser2,
-      heroUser3,
-      heroUser4,
-      loading: false,
-    });
-  };
+  const powerLevelUser = calculatePowerLevel(selectedHero);
+  const powerLevelLawan = calculatePowerLevel(heroLawan);
+  const hasilTanding = bandingUserLawan(powerLevelUser, powerLevelLawan);
 
-  render() {
-    const {
-      opening,
-      loading,
-      heroLawan,
-      heroUser1,
-      heroUser2,
-      heroUser3,
-      heroUser4,
-    } = this.state;
-    const heroUser = [heroUser1, heroUser2, heroUser3, heroUser4];
+  const showTableHeroUser = showTable ? "d-block" : "d-none";
+  const showHeroUser = showTable ? "d-none" : "d-block";
 
-    const showOpening = opening ? "d-block" : "d-none";
-    const showVersus = opening ? "d-none" : "d-block";
-
-    return (
-      <div className="container tanding">
-        <TitleText />
-        <Opening className={showOpening} handleStart={this.handleStart} />
-        <Versus
-          className={showVersus}
-          heroLawan={heroLawan}
-          heroUser={heroUser}
-          handleResetHero={this.handleResetHero}
-          handleHeroRematch={this.handleHeroRematch}
-          loading={loading}
-        />
-        <Footer isTanding />
+  return (
+    <div className="versus">
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={handleCloseModal}
+        overlayClassName="ReactModal__Overlay"
+        className="ReactModal__Content"
+      >
+        <h2 className="mb-3">{hasilTanding}</h2>
+        <button className="btn btn-secondary btn-sm" onClick={handleCloseModal}>
+          close
+        </button>
+      </Modal>
+      <TitleText />
+      <div className="row justify-content-center my-4 align-items-center">
+        <div className="col-5 col-lg-4">
+          <TabelHeroUser
+            heroUser1={heroUser1}
+            handleClick={handleSelectHeroUser}
+            showTableHeroUser={showTableHeroUser}
+            loading={isLoading}
+          />
+          <HeroUser
+            showHeroUser={showHeroUser}
+            selectedHero={selectedHero}
+            powerLevelUser={powerLevelUser}
+          />
+        </div>
+        <div className="col-2 sword">
+          <img src={swords} alt="batman" />
+        </div>
+        <div className="col-5 col-lg-4">
+          <HeroLawan
+            heroLawan={heroLawan}
+            showHeroLawan={showHeroLawan}
+            powerLevelLawan={powerLevelLawan}
+          />
+        </div>
       </div>
-    );
-  }
-}
+      <div className="text-center mt-2 mb-4">
+        <Button
+          type="button"
+          className="btn btn-danger btn-lg"
+          style={{ paddingLeft: 50, paddingRight: 50 }}
+          onClick={null}
+        >
+          R E M A T C H
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export default Tanding;

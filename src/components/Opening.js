@@ -6,12 +6,9 @@ import batman from "../assets/batman.png";
 import ironman from "../assets/ironman.png";
 import swords from "../assets/swords.png";
 
-const Opening = (props) => {
-  const className = [props.className];
-  const { handleStart } = props;
-
+const Opening = () => {
   return (
-    <div className={`opening ${className}`}>
+    <div className={`opening`}>
       <div className="row justify-content-around my-4 align-items-center">
         <div className="col-5 col-lg-4 opening-kiri">
           <img src={ironman} alt="batman" />
@@ -25,10 +22,10 @@ const Opening = (props) => {
       </div>
       <div className="text-center my-3">
         <Button
-          type="button"
+          type="link"
           className="btn btn-danger btn-lg"
           style={{ paddingLeft: 50, paddingRight: 50 }}
-          onClick={handleStart}
+          href="/tanding"
         >
           S T A R T
         </Button>

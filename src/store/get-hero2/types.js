@@ -1,2 +1,2 @@
-export const LOADING = "GetHero1/Loading";
-export const FETCHING = "GetHero1/Fetching";
+export const LOADING = "GetHero2/Loading";
+export const FETCHING = "GetHero2/Fetching";

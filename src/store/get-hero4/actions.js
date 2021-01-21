@@ -6,7 +6,7 @@ const key = process.env.REACT_APP_API_KEY;
 const id = randomNumber(1, 731);
 const loading = (isLoading = true) => ({ type: types.LOADING, isLoading });
 
-export const fetchData = (dispatch) => {
+export const fetchData = () => (dispatch) => {
   dispatch(loading());
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   const options = {
