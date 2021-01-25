@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Button from "./Button";
 
@@ -8,6 +8,10 @@ const HeroLawan = (props) => {
   const { heroLawan, showHeroLawan, powerLevelLawan } = props;
 
   const [showStats, setShowStats] = useState(false);
+
+  useEffect(() => {
+    setShowStats(false);
+  }, []);
 
   const handleShowStats = () => {
     setShowStats(!showStats);

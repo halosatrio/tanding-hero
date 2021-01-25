@@ -1,19 +1,19 @@
 import * as types from "./types";
 
 const initState = {
-  data: [],
+  hero3: [],
   isLoading: false,
   message: "",
 };
 
 export default function GetHero3(state = initState, action) {
-  const { data, isLoading, message, type } = action;
+  const { hero3, isLoading, message, type } = action;
 
   switch (type) {
     case types.LOADING:
       return { ...state, isLoading };
     case types.FETCHING:
-      return { ...state, data, message };
+      return { ...state, hero3, message };
     default:
       return state;
   }
