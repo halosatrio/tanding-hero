@@ -95,7 +95,7 @@ const About = () => {
           </li>
         </ul>
       </div>
-      <Footer />
+      <Footer isAbout />
     </div>
   );
 };

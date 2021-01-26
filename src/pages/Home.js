@@ -9,7 +9,7 @@ const Home = () => {
     <div className="container tanding">
       <TitleText />
       <Opening />
-      <Footer isTanding />
+      <Footer isHome />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import TabelHeroUser from "../components/TabelHeroUser";
 import HeroUser from "../components/HeroUser";
 import HeroLawan from "../components/HeroLawan";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
 
 import swords from "../assets/swords.png";
 import {
@@ -32,7 +33,7 @@ const Tanding = () => {
     randomNumber(1, 731),
     randomNumber(1, 731),
   ]);
-  const [generate, setGenerate] = useState(true);
+  // const [generate, setGenerate] = useState(true);
   const [heroUser1, setHeroUser1] = useState([]);
   const [heroUser2, setHeroUser2] = useState([]);
   const [heroUser3, setHeroUser3] = useState([]);
@@ -53,14 +54,12 @@ const Tanding = () => {
 
   // Hooks
   useEffect(() => {
-    if (generate) {
-      dispatch(getHero1.fetchData(id[0]));
-      dispatch(getHero2.fetchData(id[1]));
-      dispatch(getHero3.fetchData(id[2]));
-      dispatch(getHero4.fetchData(id[3]));
-      dispatch(getLawan.fetchData(id[4]));
-    }
-  }, [dispatch, generate, id]);
+    dispatch(getHero1.fetchData(id[0]));
+    dispatch(getHero2.fetchData(id[1]));
+    dispatch(getHero3.fetchData(id[2]));
+    dispatch(getHero4.fetchData(id[3]));
+    dispatch(getLawan.fetchData(id[4]));
+  }, [dispatch, id]);
 
   useEffect(() => {
     setHeroUser1(hero1);
@@ -71,10 +70,6 @@ const Tanding = () => {
   }, [hero1, hero2, hero3, hero4, lawan]);
 
   // handler
-  const handleOpenModal = () => {
-    setModalIsOpen(true);
-  };
-
   const handleCloseModal = () => {
     setModalIsOpen(false);
   };
@@ -83,7 +78,7 @@ const Tanding = () => {
     setShowTable(!showTable);
     setShowHeroLawan(!showHeroLawan);
     setSelectedHero(hero);
-    setTimeout(handleOpenModal, 1000);
+    setTimeout(setModalIsOpen(true), 1000);
   };
 
   const handleRematch = () => {
@@ -102,12 +97,8 @@ const Tanding = () => {
   const powerLevelUser = calculatePowerLevel(selectedHero);
   const powerLevelLawan = calculatePowerLevel(heroLawan);
   const hasilTanding = bandingUserLawan(powerLevelUser, powerLevelLawan);
-
   const showTableHeroUser = showTable ? "d-block" : "d-none";
   const showHeroUser = showTable ? "d-none" : "d-block";
-
-  console.log("generate", generate);
-  console.log("idHero", id);
 
   return (
     <div className="versus">
@@ -123,7 +114,7 @@ const Tanding = () => {
         </button>
       </Modal>
       <TitleText />
-      <div className="row justify-content-center my-4 align-items-center">
+      <div className="row justify-content-center my-4 mx-0 px-1 align-items-center">
         <div className="col-5 col-lg-4">
           <TabelHeroUser
             heroUser1={heroUser1}
@@ -161,6 +152,7 @@ const Tanding = () => {
           R E M A T C H
         </Button>
       </div>
+      <Footer isTanding />
     </div>
   );
 };
