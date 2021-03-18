@@ -8,7 +8,7 @@ export async function getHeroLawan(id) {
       `https://superheroapi.com/api/${key}/${id}`,
       {
         method: "GET",
-        mode: "cors",
+        origin: "https://superheroapi.com/",
       }
     );
     return {
@@ -32,7 +32,7 @@ export async function getHeroUser(id) {
       `https://superheroapi.com/api/${key}/${id}`,
       {
         method: "GET",
-        mode: "cors",
+        origin: "https://superheroapi.com/",
       }
     );
     return {
