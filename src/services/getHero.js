@@ -10,7 +10,7 @@ export async function getHeroLawan(id) {
     );
     return {
       name: response.data.name,
-      image: response.data.image.md,
+      image: response.data.images.md,
       intelligence: response.data.powerstats.intelligence,
       strength: response.data.powerstats.strength,
       speed: response.data.powerstats.speed,
@@ -33,7 +33,7 @@ export async function getHeroUser(id) {
     );
     return {
       name: response.data.name,
-      image: response.data.image.md,
+      image: response.data.images.md,
       intelligence: response.data.powerstats.intelligence,
       strength: response.data.powerstats.strength,
       speed: response.data.powerstats.speed,
