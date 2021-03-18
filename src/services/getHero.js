@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const key = process.env.REACT_APP_API_KEY;
-
 export async function getHeroLawan(id) {
   try {
     const response = await axios(
