@@ -5,15 +5,14 @@ const key = process.env.REACT_APP_API_KEY;
 export async function getHeroLawan(id) {
   try {
     const response = await axios(
-      `https://superheroapi.com/api/${key}/${id}`,
+      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,
       {
         method: "GET",
-        origin: "https://superheroapi.com/",
       }
     );
     return {
       name: response.data.name,
-      image: response.data.image.url,
+      image: response.data.image.md,
       intelligence: response.data.powerstats.intelligence,
       strength: response.data.powerstats.strength,
       speed: response.data.powerstats.speed,
@@ -29,15 +28,14 @@ export async function getHeroLawan(id) {
 export async function getHeroUser(id) {
   try {
     const response = await axios(
-      `https://superheroapi.com/api/${key}/${id}`,
+      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,
       {
         method: "GET",
-        origin: "https://superheroapi.com/",
       }
     );
     return {
       name: response.data.name,
-      image: response.data.image.url,
+      image: response.data.image.md,
       intelligence: response.data.powerstats.intelligence,
       strength: response.data.powerstats.strength,
       speed: response.data.powerstats.speed,
