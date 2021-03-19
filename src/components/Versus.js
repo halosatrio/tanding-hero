@@ -58,12 +58,12 @@ const Versus = (props) => {
     setSelectedHero(null);
 
     handleResetHero();
-    const idLawan = randomNumber(1, 731);
+    const idLawan = randomNumber(1, 563);
     const idUser = [
-      randomNumber(1, 731),
-      randomNumber(1, 731),
-      randomNumber(1, 731),
-      randomNumber(1, 731),
+      randomNumber(1, 563),
+      randomNumber(1, 563),
+      randomNumber(1, 563),
+      randomNumber(1, 563),
     ];
 
     const [

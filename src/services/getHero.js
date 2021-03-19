@@ -1,9 +1,11 @@
 import axios from "axios";
 
+import ids from "./ids";
+
 export async function getHeroLawan(id) {
   try {
     const response = await axios(
-      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,
+      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${ids[id]}.json`,
       {
         method: "GET",
       }
@@ -26,7 +28,7 @@ export async function getHeroLawan(id) {
 export async function getHeroUser(id) {
   try {
     const response = await axios(
-      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${id}.json`,
+      `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/id/${ids[id]}.json`,
       {
         method: "GET",
       }
